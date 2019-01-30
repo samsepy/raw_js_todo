@@ -1,13 +1,20 @@
-var taskInput = document.getElementById("new-task");
-var addButton = document.getElementsByTagName("button")[0];
-var taskList = document.getElementById("current_task");
+class TodoList {
+    constructor() {
+        this.taskInput = document.getElementById("new-task");
+        this.addButton = document.getElementsByTagName("button")[0];
+        this.taskList = document.getElementById("current_task");
+    }
+    addTask() {
+        var task = document.createElement("li");
+        var label = document.createElement("label");
+        label.innerText = this.taskInput.value;
+        task.appendChild(label)
+        this.taskList.appendChild(task);
+    }
 
-var addTask = function() {
-    var task = document.createElement("li");
-    var label = document.createElement("label");
-    label.innerText = taskInput.value;
-    task.appendChild(label)
-    taskList.appendChild(task);
 }
 
-addButton.onclick=addTask;
+let todo;
+window.addEventListener("load", () => {
+  todo = new TodoList();
+});
