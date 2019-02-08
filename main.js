@@ -20,20 +20,10 @@ class TodoList {
               done: true
             }
         ]
+        this.viewTasks();
     }
-    addTask() {
-        // var task = document.createElement("li");
-        // var label = document.createElement("label");
-        // label.innerText = this.taskInput.value;
-        // task.appendChild(label)
-        // this.taskList.appendChild(task);
-
-        // viewTaskを呼ぶ
-        // viewTasks();
-    }
+    
     viewTasks() {
-        var task = document.createElement("li");
-        var label = document.createElement("label");
         var todoList = [];
         this.todos.map(todo => (
             todoList.push(`<li>${todo.desc}</li>`)
