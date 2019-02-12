@@ -7,28 +7,36 @@ class TodoList {
             {
               id: 1,
               desc: "todo1",
-              done: true
+              done: false
             },
             {
               id: 2,
               desc: "todo2",
-              done: true
+              done: false
             },
             {
               id: 3,
               desc: "todo3",
-              done: true
+              done: false
             }
         ]
         this.viewTasks();
     }
-    
     viewTasks() {
-        var todoList = [];
-        this.todos.map(todo => (
-            todoList.push(`<li>${todo.desc}</li>`)
-        ));
-        this.taskList.innerHTML = todoList.join('');
+      var todoList = [];
+      this.todos.map(todo => (
+          todoList.push(`<li>${todo.desc}</li>`)
+      ));
+      this.taskList.innerHTML = todoList.join('');
+    }
+    
+    addTask() {
+      this.todos.push({ 
+        id: 1,
+        desc: this.taskInput.value,
+        done: "false"
+      });
+      this.viewTasks();
     }
 }
 
