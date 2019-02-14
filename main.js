@@ -25,19 +25,15 @@ class TodoList {
     viewTasks() {
       var todoList = [];
       this.todos.map(todo => (
-          todoList.push(`<li id="${todo.id}" onclick="todo.deleteTask(this)">${todo.desc}</li>`)
+        todoList.push(`<li id="${todo.id}" onclick="todo.deleteTask(this)">${todo.desc}</li>`)
       ));
       this.taskList.innerHTML = todoList.join('');
     }
 
     addTask() {
       const elms = document.querySelectorAll('li');
-      elms.forEach(elm => {
-        // Elementオブジェクト
-        console.log(elm);
-      });
       this.todos.push({ 
-        id: 1,
+        id: this.setId(), // IDを割り振る関数を呼び出す
         desc: this.taskInput.value,
         done: "false"
       });
@@ -46,10 +42,17 @@ class TodoList {
     // TODO: タスク削除機能
     deleteTask(todo_elm) {
       console.log(todo_elm.id);
+      var newData = null;
+      newData = this.todos.filter(function(item, _) {
+        if(item.id != todo_elm.id) return true;
+      });
+      this.todos = newData;
       this.viewTasks();
     }
-
-    
+    setId() {
+      var lastId = this.todos.slice(-1)[0].id;
+      return lastId + 1;
+    }
 }
 
 let todo;
