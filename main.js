@@ -1,6 +1,7 @@
 class TodoList {
     constructor() {
         this.taskInput = document.getElementById("new-task");
+        this.incrementalInput = document.getElementById("task-incremental-search")
         this.addButton = document.getElementsByTagName("button")[0];
         this.taskList = document.getElementById("current_task");
         this.todos = [
@@ -20,11 +21,11 @@ class TodoList {
               done: false
             }
         ]
-        this.viewTasks();
+        this.viewTasks(this.todos);
     }
-    viewTasks() {
+    viewTasks(current_todos) {
       var todoList = [];
-      this.todos.map(todo => (
+      current_todos.map(todo => (
         todoList.push(`<li id="${todo.id}" onclick="todo.deleteTask(this)">${todo.desc}</li>`)
       ));
       this.taskList.innerHTML = todoList.join('');
@@ -37,7 +38,7 @@ class TodoList {
         desc: this.taskInput.value,
         done: "false"
       });
-      this.viewTasks();
+      this.viewTasks(this.todos);
     }
     // TODO: タスク削除機能
     deleteTask(todo_elm) {
@@ -47,11 +48,40 @@ class TodoList {
         if(item.id != todo_elm.id) return true;
       });
       this.todos = newData;
-      this.viewTasks();
+      this.viewTasks(this.todos);
     }
     setId() {
       var lastId = this.todos.slice(-1)[0].id;
       return lastId + 1;
+    }
+    // TODO: インクリメンタルサーチ
+    incrementalSearch() {
+      console.log("input text");
+      console.log(this.incrementalInput.value);
+      var wordFlagment = this.incrementalInput.value;
+      var searchedTodos = this.todos.filter(function(item, _) {
+        if(item.desc.slice(0, wordFlagment.length) == wordFlagment) return true;
+      });
+      this.viewTasks(searchedTodos);
+      console.log(searchedTodos);
+      // console.log(searchedData);
+      var incrementalTodos = [
+        {
+          id: 1,
+          desc: "hoge1",
+          done: false
+        },
+        {
+          id: 2,
+          desc: "hoge2",
+          done: false
+        },
+        {
+          id: 3,
+          desc: "hoge3",
+          done: false
+        }
+      ]
     }
 }
 
