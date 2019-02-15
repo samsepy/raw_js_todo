@@ -49,6 +49,7 @@ class TodoList {
       });
       this.todos = newData;
       this.viewTasks(this.todos);
+      this.incrementalSearch();
     }
     setId() {
       var lastId = this.todos.slice(-1)[0].id;
@@ -64,24 +65,6 @@ class TodoList {
       });
       this.viewTasks(searchedTodos);
       console.log(searchedTodos);
-      // console.log(searchedData);
-      var incrementalTodos = [
-        {
-          id: 1,
-          desc: "hoge1",
-          done: false
-        },
-        {
-          id: 2,
-          desc: "hoge2",
-          done: false
-        },
-        {
-          id: 3,
-          desc: "hoge3",
-          done: false
-        }
-      ]
     }
 }
 
