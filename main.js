@@ -32,6 +32,7 @@ class TodoList {
     }
 
     addTask() {
+      if (this.taskInput.value.length == 0) return; // formがからの場合は追加しない
       const elms = document.querySelectorAll('li');
       this.todos.push({ 
         id: this.setId(), // IDを割り振る関数を呼び出す
@@ -69,6 +70,9 @@ class TodoList {
 }
 
 let todo;
+
 window.addEventListener("load", () => {
   todo = new TodoList();
 });
+// let addButton = document.getElementsByTagName("button")[0];
+// addButton.addEventListener("click", ()=>{todo.addTask()});
